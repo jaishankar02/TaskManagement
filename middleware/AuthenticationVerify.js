@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken')
-const secretKey='djalkfsdiaksdjfkasdifaksdfiaksd';
 class authentication{
     static tokenVerify=async(req,res,next)=>{
         const authHeader = req.headers['authorization'];
@@ -16,7 +15,7 @@ class authentication{
         }
         
         try {
-            const decoded = jwt.verify(token,secretKey);
+            const decoded = jwt.verify(token,process.env.JWT_SECRET);
             req.userData=decoded;
             next();
         }

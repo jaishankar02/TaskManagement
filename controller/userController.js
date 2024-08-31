@@ -70,7 +70,7 @@ class userController{
                     console.log(password);
                     const isPasswordCorrect= await passwordOperation.comparePassword(password,user.password_hash)
                     if(isPasswordCorrect){
-                        const accessToken=jwt.sign({username:user.username,role:user.role,userid:user.id},'djalkfsdiaksdjfkasdifaksdfiaksd',{expiresIn:'1d'})
+                        const accessToken=jwt.sign({username:user.username,role:user.role,userid:user.id},process.env.JWT_SECRET,{expiresIn:'1d'})
                         res.status(200).send({
                             success:true,
                             meassage:'Login Successfull',
